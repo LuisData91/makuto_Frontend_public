@@ -1,7 +1,10 @@
+import ListTecnico from "./pages/tecnicos/listado/ListTecnico"
 
 const App = () => {
   return (
-    <div>Hola Mundo</div>
+    <>
+      <ListTecnico />
+    </>
   )
 }
 
