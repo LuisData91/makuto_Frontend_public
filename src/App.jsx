@@ -1,10 +1,8 @@
-import ListTecnico from "./pages/tecnicos/listado/ListTecnico"
+import AdminRutas from "./routes/AdminRutas"
 
 const App = () => {
   return (
-    <>
-      <ListTecnico />
-    </>
+    <AdminRutas />
   )
 }
 
