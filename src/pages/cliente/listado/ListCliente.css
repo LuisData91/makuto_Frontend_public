@@ -1,0 +1,15 @@
+
+.btn-azul-noche {
+  border-color: #00254E!important;
+  color: #00254E!important;
+}
+
+.btn-azul-noche:hover {
+  background-color: #00254E !important;
+  color: white !important;
+}
+
+.table-dark {
+  background-color: #001f3f !important; /* azul noche */
+  color: white !important;             /* texto blanco */
+}
