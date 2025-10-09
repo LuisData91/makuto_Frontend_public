@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import Logo from "../assets/images/IconoChino.png";
 import "../components/styles/MenuPrincipal.css";
 import { MENU } from "../data/opcionesMenu";
+import { useNavigate } from "react-router-dom";
 
 const slug = (s) =>
     s
@@ -14,6 +15,7 @@ const slug = (s) =>
 const MenuPrincipal = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const [seccionActiva, setSeccionActiva] = useState(null);
+    const navigate = useNavigate();
 
     const toggleSeccion = (key) => {
         setSeccionActiva((prev) => (prev === key ? null : key));
@@ -108,18 +110,17 @@ const MenuPrincipal = () => {
                                 <div id={sectionId} className={`collapsible ${abierto ? "open" : ""}`}>
                                     <div className="inner">
                                         <ul className="submenu">
-                                            {items.map((txt) => (
-                                                <li key={txt}>
+                                            {items.map(({ label, path }) => (
+                                                <li key={path}>
                                                     <button
                                                         className="submenu-link"
                                                         type="button"
                                                         onClick={() => {
-                                                            console.log("click →", key, ">", txt);
-                                                            // aquí navegas o ejecutas acción
+                                                            navigate(path);
                                                             closeMenu();
                                                         }}
                                                     >
-                                                        {txt}
+                                                        {label}
                                                     </button>
                                                 </li>
                                             ))}

@@ -1,26 +1,49 @@
 export const MENU = [
     {
-        key: "Inventario",
+        key: "CAT",
         items: [
-            "Reg. Entrada de Inventario",
-            "Reg. Salida de Inventario",
-            "Reg. Transferencia entre almacenes",
+            {
+                label: "Registro de Visita",
+                path: "/visita",
+            },
+            {
+                label: "Registro de Técnico",
+                path: "/tecnico",
+            },
         ],
     },
     {
         key: "Facturación",
         items: [
-            "Reg. de Pedido", 
-            "Reg. de Facturación", 
-            "Reg. de Nota de Crédito"
+            {
+                label: "Reg. de Pedido",
+                path: "/home",
+            },
+            {
+                label: "Reg. de Facturación",
+                path: "/home",
+            },
+            {
+                label: "Reg. de Nota de Crédito",
+                path: "/home",
+            },
         ],
     },
     {
         key: "Tesorería",
         items: [
-            "Reg. de Entrada de Caja",
-            "Reg. de Salida de Caja",
-            "Reg. de transferencia entre bancos",
+            {
+                label: "Reg. de Entrada de Caja",
+                path: "/home",
+            },
+            {
+                label: "Reg. de Salida de Caja",
+                path: "/home",
+            },
+            {
+                label: "Reg. de transferencia entre bancos",
+                path: "/home",
+            },
         ],
     },
 ];

@@ -20,7 +20,7 @@ const AdminRutas = () => {
                                 <Route key={path} path={path} element={<Component />} />
                             ))
                         }
-                        <Route index element={<Navigate to="/" replace />} />
+                        {/* <Route index element={<Navigate to="/" replace />} /> */}
                     </Route>
 
                     {/* Rutas sin menú (ej. login) */}

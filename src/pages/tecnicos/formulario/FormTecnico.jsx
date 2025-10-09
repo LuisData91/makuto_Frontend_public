@@ -1,83 +1,196 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
-import { createTecnico, updateTecnico } from "../servicio/servTecnico";
+import { useContext, useEffect, useState } from 'react'
+import { GeneralContext } from '../../../context/generalContext'
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  obtenerTecnico,
+  crearTecnico,
+  actualizarTecnico,
+  eliminarTecnico,
+} from "../servicio/tecnicoService";
 
-const FormTecnico = ({ tecnicos, setTecnicos }) => {
-  const [formData, setFormData] = useState({ nombre: "", dni: "" });
+const FormTecnico = () => {
+  const { regNuevo } = useContext(GeneralContext)
+  const { cod_tec: codParam } = useParams();
   const navigate = useNavigate();
-  const { id } = useParams();
-  const location = useLocation();
+
+  const [form, setForm] = useState({
+    cod_tec: "",
+    nombre: "",
+    activo: true,
+  });
+
+  const [loading, setLoading] = useState(!regNuevo);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    if (id && location.state) {
-      setFormData(location.state);
-    }
-  }, [id, location.state]);
+    if (regNuevo) return;
+    (async () => {
+      try {
+        setLoading(true);
+        const { data } = await obtenerTecnico(codParam);
+        setForm({
+          cod_tec: data?.cod_tec ?? "",
+          nombre: data?.nombre ?? "",
+        });
+      } catch (e) {
+        alert("No se pudo cargar el técnico.");
+        navigate("/tecnicos");
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, [regNuevo, codParam, navigate]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // const onChange = (e) => {
+  //   const { name, value, type, checked } = e.target;
+  //   setForm((f) => ({
+  //     ...f,
+  //     [name]: type === "checkbox" ? checked : value,
+  //   }));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (id) {
-      await updateTecnico(id, formData);
-      setTecnicos((prev) =>
-        prev.map((t) => (t.id === parseInt(id) ? { ...t, ...formData } : t))
-      );
-      alert("Técnico actualizado (mock)");
-    } else {
-      const res = await createTecnico(formData);
-      setTecnicos((prev) => [...prev, res.data]);
-      alert("Técnico creado (mock)");
+    try {
+      setSaving(true);
+      if (regNuevo) {
+        await crearTecnico(form);
+        alert("Técnico creado correctamente.");
+      } else {
+        await actualizarTecnico(form.cod_tec, form);
+        alert("Técnico actualizado correctamente.");
+      }
+      navigate("/tecnico");
+    } catch (err) {
+      console.error(err);
+      alert("Ocurrió un error al guardar.");
+    } finally {
+      setSaving(false);
     }
-
-    navigate("/tecnicos");
   };
 
+  const handleDelete = async () => {
+    if (!window.confirm("¿Deseas eliminar (inactivar) este técnico?")) return;
+    try {
+      setSaving(true);
+      await eliminarTecnico(form.cod_tec);
+      alert("Técnico eliminado (inactivado).");
+      navigate("/tecnico");
+    } catch (err) {
+      console.error(err);
+      alert("No se pudo eliminar.");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleNombreChange = (e) => {
+    const upper = e.target.value.toUpperCase();
+    setForm((f) => ({ ...f, nombre: upper }));
+  };
+
+  if (loading) return <p className="p-4">Cargando…</p>;
+
   return (
-    <div className="container mt-4">
-      <h2>{id ? "Editar Técnico" : "Agregar Técnico"}</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label className="form-label">Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-sm-10 col-md-5 col-lg-6 col-xl-5">
+            {/* Card */}
+            <div className="card">
 
-        <div className="mb-3">
-          <label className="form-label">DNI</label>
-          <input
-            type="text"
-            name="dni"
-            value={formData.dni}
-            onChange={handleChange}
-            className="form-control"
-            required
-          />
-        </div>
+              {/* CABECERA DEL CARD */}
+              <div className="card-header">
+                Registro de Técnico
+              </div>
 
-        <button type="submit" className="btn btn-azul-noche me-2">
-          {id ? "Actualizar" : "Guardar"}
-        </button>
-        <button
-          type="button"
-          className="btn btn-secondary"
-          onClick={() => navigate("/tecnicos")}
-        >
-          Cancelar
-        </button>
-      </form>
+              {/* DETALLE DEL CARD */}
+              <div className="card-body p-4 p-md-5">
+                <form onSubmit={handleSubmit} autoComplete='off'>
+                  {/* CÓDIGO DE TÉCNICO */}
+                  <div className="form-floating mb-3">
+                    <input
+                      id="codTec"
+                      name="cod_tec"
+                      type="text"
+                      className="form-control"
+                      placeholder="DNI"
+                      value={form.cod_tec}
+                      inputMode="numeric"
+                      pattern="[0-9]*"
+                      maxLength={8}
+                      onChange={(e) =>
+                        setForm((f) => ({
+                          ...f,
+                          cod_tec: e.target.value.toUpperCase(),
+                        }))
+                      }
+                      required
+                      disabled={!regNuevo}
+                    />
+                    <label htmlFor="email">Código del Técnico</label>
+                  </div>
+
+                  {/* NOMBRE DE TÉCNICO */}
+                  <div className="form-floating mb-3">
+                    <input
+                      id="nomTec"
+                      name="nombre"
+                      type="text"
+                      className="form-control text-uppercase"
+                      placeholder="Nombre"
+                      value={form.nombre}
+                      onChange={handleNombreChange}
+                      autoCapitalize="characters"
+                      spellCheck={false}
+                      required
+                    />
+                    <label htmlFor="email">Nombre del Técnico</label>
+                  </div>
+
+                  {/* BOTONOES DE CONTROL */}
+                  <div className="d-flex flex-row-reverse">
+                    <div className="btn-group" role="group">
+
+                      <button
+                        type="submit"
+                        className="btn btn-outline-secondary"
+                        disabled={saving}
+                      >
+                        {regNuevo ? "Grabar" : "Guardar cambios"}
+                      </button>
+
+                      {!regNuevo && (
+                        <button
+                          type="button"
+                          className="btn btn-outline-secondary"
+                          onClick={handleDelete}
+                          disabled={saving}
+                        >
+                          Eliminar
+                        </button>
+                      )}
+
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary"
+                        onClick={() => navigate("/tecnico")}
+                        disabled={saving}
+                      >
+                        Cancelar
+                      </button>
+
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default FormTecnico;
+export default FormTecnico
