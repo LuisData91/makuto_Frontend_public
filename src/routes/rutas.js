@@ -26,5 +26,19 @@ export const listaRutas = [
         Component: lazy(() => import('../pages/tecnicos/formulario/FormTecnico')),
         noLayout: true,
     },
-
+    {
+        path: '/visita',
+        Component: lazy(() => import('../pages/visitatec/listado/ListVisita')),
+        noLayout: false,
+    },
+    {
+        path: '/visita/nuevo',
+        Component: lazy(() => import('../pages/visitatec/formulario/FormVisita')),
+        noLayout: true,
+    },
+    {
+        path: '/visita/:id/editar',
+        Component: lazy(() => import('../pages/visitatec/formulario/FormVisita')),
+        noLayout: true,
+    },
 ]

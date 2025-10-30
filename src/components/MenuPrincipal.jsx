@@ -1,8 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useContext } from "react";
 import Logo from "../assets/images/IconoChino.png";
 import "../components/styles/MenuPrincipal.css";
 import { MENU } from "../data/opcionesMenu";
 import { useNavigate } from "react-router-dom";
+import { GeneralContext } from "../context/generalContext";
 
 const slug = (s) =>
     s
@@ -15,6 +16,7 @@ const slug = (s) =>
 const MenuPrincipal = () => {
     const [menuVisible, setMenuVisible] = useState(false);
     const [seccionActiva, setSeccionActiva] = useState(null);
+    const { usuActual } = useContext(GeneralContext)
     const navigate = useNavigate();
 
     const toggleSeccion = (key) => {
@@ -51,6 +53,9 @@ const MenuPrincipal = () => {
                         </button>
                         <img className="ms-2" src={Logo} alt="Logo" height="25" />
                         <span className="fw-bold ms-1">MAkuto</span>
+                    </div>
+                    <div className="usuario">
+                        <span className="fw-bold text-secondary">{ usuActual.usr_usu }</span>
                     </div>
                 </div>
             </nav>

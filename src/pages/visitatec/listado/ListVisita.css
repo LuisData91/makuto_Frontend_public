@@ -1,0 +1,19 @@
+@media (max-width: 767.98px) {
+
+    /* < md (móvil) */
+    .visitas-table,
+    .visitas-table thead,
+    .visitas-table th,
+    .visitas-table td {
+        font-size: 0.875rem;
+        /* ~14px */
+    }
+
+    /* Opcional: compactar un poco más las filas en móvil */
+    
+    .visitas-table td,
+    .visitas-table th {
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+    }
+}

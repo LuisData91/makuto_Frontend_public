@@ -4,6 +4,7 @@ import { GeneralContext } from './generalContext'
 const GeneralState = ({ children }) => {
 
     const [ regNuevo, setRegNuevo ] = useState(true);
+    const [ dTecnico, setDTecnico ] = useState([]);
     const [ usuActual, setUsuActual ] = useState(() => {
         const DatosUsuario = localStorage.getItem('usr');
         return (
@@ -30,6 +31,8 @@ const GeneralState = ({ children }) => {
             setRegNuevo,
             usuActual,
             setUsuActual,
+            dTecnico, 
+            setDTecnico
         }}>
             { children }
         </GeneralContext.Provider>

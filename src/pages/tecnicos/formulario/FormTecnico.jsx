@@ -41,14 +41,6 @@ const FormTecnico = () => {
     })();
   }, [regNuevo, codParam, navigate]);
 
-  // const onChange = (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setForm((f) => ({
-  //     ...f,
-  //     [name]: type === "checkbox" ? checked : value,
-  //   }));
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

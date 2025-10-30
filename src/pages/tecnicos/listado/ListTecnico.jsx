@@ -5,7 +5,7 @@ import { GeneralContext } from "../../../context/generalContext";
 
 const ListTecnico = () => {
 
-  const { setRegNuevo } = useContext(GeneralContext)
+  const { setRegNuevo } = useContext(GeneralContext);
   const [tecnicos, setTecnicos] = useState([]);
   const [paginaActual, setPaginaActual] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
@@ -172,6 +172,7 @@ const ListTecnico = () => {
         </div>
       </div>
     </div>
+    
   );
 };
 
