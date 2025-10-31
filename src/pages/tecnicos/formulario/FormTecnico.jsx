@@ -140,6 +140,24 @@ const FormTecnico = () => {
                     <label htmlFor="email">Nombre del Técnico</label>
                   </div>
 
+                  {/* USUARIO EN PROTHEUS DEL TÉCNICO */}
+                  <div className="form-floating mb-3">
+                    <input
+                      id="usuario"
+                      name="usuario"
+                      type="text"
+                      className="form-control"
+                      placeholder="Usuario"
+                      // value={form.usuario}
+                      // onChange={handleNombreChange}
+                      // autoCapitalize="characters"
+                      // spellCheck={false}
+                      // required
+                    />
+                    <label htmlFor="usuario">Usuario Protheus</label>
+                  </div>
+
+
                   {/* BOTONOES DE CONTROL */}
                   <div className="d-flex flex-row-reverse">
                     <div className="btn-group" role="group">
