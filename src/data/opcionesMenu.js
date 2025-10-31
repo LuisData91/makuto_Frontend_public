@@ -12,38 +12,38 @@ export const MENU = [
             },
         ],
     },
-    {
-        key: "Facturación",
-        items: [
-            {
-                label: "Reg. de Pedido",
-                path: "/home",
-            },
-            {
-                label: "Reg. de Facturación",
-                path: "/home",
-            },
-            {
-                label: "Reg. de Nota de Crédito",
-                path: "/home",
-            },
-        ],
-    },
-    {
-        key: "Tesorería",
-        items: [
-            {
-                label: "Reg. de Entrada de Caja",
-                path: "/home",
-            },
-            {
-                label: "Reg. de Salida de Caja",
-                path: "/home",
-            },
-            {
-                label: "Reg. de transferencia entre bancos",
-                path: "/home",
-            },
-        ],
-    },
+    // {
+    //     key: "Facturación",
+    //     items: [
+    //         {
+    //             label: "Reg. de Pedido",
+    //             path: "/home",
+    //         },
+    //         {
+    //             label: "Reg. de Facturación",
+    //             path: "/home",
+    //         },
+    //         {
+    //             label: "Reg. de Nota de Crédito",
+    //             path: "/home",
+    //         },
+    //     ],
+    // },
+    // {
+    //     key: "Tesorería",
+    //     items: [
+    //         {
+    //             label: "Reg. de Entrada de Caja",
+    //             path: "/home",
+    //         },
+    //         {
+    //             label: "Reg. de Salida de Caja",
+    //             path: "/home",
+    //         },
+    //         {
+    //             label: "Reg. de transferencia entre bancos",
+    //             path: "/home",
+    //         },
+    //     ],
+    // },
 ];

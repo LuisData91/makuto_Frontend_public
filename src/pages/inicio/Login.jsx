@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import api from "../../api/api";
 import qs from 'qs';
 import { obtenerUsuarioPorCodigo } from "./usuarioServices";
+import './Login.css';
+import robot from "../../assets/images/robot.png";
 
 const Login = () => {
 
@@ -50,35 +52,39 @@ const Login = () => {
     }
 
     return (
-        <div className="container">
-            <form onSubmit={handleLogin} >
-                <div className="mb-3">
-                    <label htmlFor="ususario" className="form-label">Usuario</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        id="usuario"
-                        value={usuario}
-                        onChange={(e) => setUsuario(e.target.value.toUpperCase())}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="clave" className="form-label">Password</label>
-                    <input
-                        type="password"
-                        className="form-control"
-                        id="clave"
-                        value={clave}
-                        onChange={(e) => setClave(e.target.value)}
-                        required
-                    />
-                </div>
+        <div className="login-container fondo-login">
+            <div className="login-box">
+                <h1 className="title">Bienvenidos</h1>
+                <img src={robot} alt="Makuto robot" className="robot-img" />
+                <form onSubmit={handleLogin} className="login-form" autoComplete="off">
+                    <div className="mb-3 input-grupo">
+                        <i className="fa-solid fa-user icon"></i>
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="usuario"
+                            value={usuario}
+                            onChange={(e) => setUsuario(e.target.value.toUpperCase())}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3 input-grupo">
+                        <i className="fa-solid fa-lock icon"></i>
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="clave"
+                            value={clave}
+                            onChange={(e) => setClave(e.target.value)}
+                            required
+                        />
+                    </div>
 
-                {error && <div className="alert alert-danger py-1">{error}</div>}
+                    {error && <div className="alert alert-danger py-1">{error}</div>}
 
-                <button type="submit" className="btn btn-primary">Ingresar</button>
-            </form>
+                    <button type="submit" className="login-btn">Ingresar</button>
+                </form>
+            </div>
         </div>
     )
 }

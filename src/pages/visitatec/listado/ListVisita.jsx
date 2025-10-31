@@ -53,7 +53,10 @@ const ListVisita = () => {
                     usrCod: usuActual.usr_cod,
                 });
 
+                console.log(usuActual.usr_cod);
+
                 const { data: tec } = await obtenerTecnico(usuActual.usr_cod);
+                console.log("Técnico actual :", tec);
                 setDTecnico(tec);
                 setVisitas(data.items || []);
                 setPaginaActual(data.page);
