@@ -1,5 +1,8 @@
 import axios from 'axios';
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://makuto-backend-public-1.onrender.com';
+
+// prueba local
+// const BASE_URL = import.meta.env.VITE_API_URL || 'https://127.0.0.1:5000';
 
 const api = axios.create({
     baseURL: BASE_URL,
