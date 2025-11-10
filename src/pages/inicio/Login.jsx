@@ -32,18 +32,31 @@ const Login = () => {
                 }
             );
 
-            if (respuesta.status === 201) {
-                const data = await obtenerUsuarioPorCodigo(usuario);
+            // if (respuesta.status === 201) {
+            //     const data = await obtenerUsuarioPorCodigo(usuario);
 
+            //     setUsuActual({
+            //         usr_cod: data.usr_cod,
+            //         usr_id: data.usr_id,
+            //         usr_nom: data.usr_nom,
+            //         usr_usu: data.usr_usu
+            //     })
+
+            //     navigate('/home')
+            // }
+            // en handleLogin
+                
+              if (respuesta.status >= 200 && respuesta.status < 300) {
+                const dto = await obtenerUsuarioPorCodigo(usuario.trim().toUpperCase());
                 setUsuActual({
-                    usr_cod: data.usr_cod,
-                    usr_id: data.usr_id,
-                    usr_nom: data.usr_nom,
-                    usr_usu: data.usr_usu
-                })
+                    usr_cod: dto.usr_cod,
+                    usr_id: dto.usr_id,
+                    usr_nom: dto.usr_nom,
+                    usr_usu: dto.usr_usu
+                });
+                navigate('/home');
+                }
 
-                navigate('/home')
-            }
 
 
         } catch (err) {
