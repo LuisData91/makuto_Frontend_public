@@ -41,4 +41,22 @@ export const listaRutas = [
         Component: lazy(() => import('../pages/visitatec/formulario/FormVisita')),
         noLayout: true,
     },
+
+    {
+        path: '/calidad/reclamos/nuevo',
+        Component: lazy(() => import('../pages/calidad/formulario/FormReclamo')),
+        noLayout: true,   // si tus formularios usan pantalla completa como /tecnico/nuevo
+    },
+        // (más adelante, cuando hagamos el listado y detalle)
+    {
+        path: '/calidad/reclamos',
+        Component: lazy(() => import('../pages/calidad/listado/ListReclamo')), // lo creamos luego
+        noLayout: false,
+    },
+    
+    {
+        path: '/calidad/reclamos/:id',
+        Component: lazy(() => import('../pages/calidad/formulario/FormReclamo')), // modo editar/ver
+        noLayout: true,
+    },
 ]

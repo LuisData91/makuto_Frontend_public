@@ -12,6 +12,20 @@ export const MENU = [
             },
         ],
     },
+
+        {
+        id: 'calidad',
+        label: 'Calidad',
+        icon: 'fa-clipboard-check',
+        children: [
+            { id: 'calidad-reclamos-nuevo', label: 'Nuevo Reclamo', to: '/calidad/reclamos/nuevo' },
+            // cuando tengamos el listado:
+            // { id: 'calidad-reclamos', label: 'Reclamos', to: '/calidad/reclamos' },
+        ],
+    },
+
+
+
     // {
     //     key: "Facturación",
     //     items: [
