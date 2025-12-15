@@ -32,19 +32,7 @@ const Login = () => {
                 }
             );
 
-            // if (respuesta.status === 201) {
-            //     const data = await obtenerUsuarioPorCodigo(usuario);
-
-            //     setUsuActual({
-            //         usr_cod: data.usr_cod,
-            //         usr_id: data.usr_id,
-            //         usr_nom: data.usr_nom,
-            //         usr_usu: data.usr_usu
-            //     })
-
-            //     navigate('/home')
-            // }
-            // en handleLogin
+          
                 
               if (respuesta.status >= 200 && respuesta.status < 300) {
                 const dto = await obtenerUsuarioPorCodigo(usuario.trim().toUpperCase());

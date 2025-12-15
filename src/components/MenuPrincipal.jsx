@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { GeneralContext } from "../context/generalContext";
 
 const slug = (s) =>
-    s
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9\-]/g, "")
-        .toLowerCase();
+  (s ?? "")                    
+    .toString()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-zA-Z0-9\-]/g, "")
+    .toLowerCase();
 
 const MenuPrincipal = () => {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -91,6 +92,7 @@ const MenuPrincipal = () => {
 
                 {/* Menú acordeón */}
                 <ul className="menu-root">
+                 
                     {MENU.map(({ key, items }) => {
                         const abierto = seccionActiva === key;
                         const sectionId = `sec-${slug(key)}`;

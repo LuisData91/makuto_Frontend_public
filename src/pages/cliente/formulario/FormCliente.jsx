@@ -1,3 +1,6 @@
+
+
+
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,6 +19,13 @@ const CrudCliente = () => {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  const handleSelect = (cli) => {
+  console.log("[FormBCliente] seleccionado:", cli);
+  onSelect?.(cli);
+  onClose?.();
+};
+
 
   // Crear cliente
   const handleAdd = (e) => {

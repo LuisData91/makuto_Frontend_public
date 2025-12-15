@@ -16,11 +16,11 @@ const App = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light" // o "dark"
+        theme="light"
       />
       
     </GeneralState>
-  )
-}
+  );
+};
 
 export default App;

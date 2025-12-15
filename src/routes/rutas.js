@@ -1,16 +1,28 @@
-import { Component, lazy } from "react";
+import { lazy } from "react";
 
 export const listaRutas = [
+
+    // ============================
+    // LOGIN (sin layout)
+    // ============================
     {
         path: '/',
         Component: lazy(() => import('../pages/inicio/Login')),
         noLayout: true
     },
+
+    // ============================
+    // HOME
+    // ============================
     {
         path: '/home',
         Component: lazy(() => import('../pages/inicio/Home')),
         noLayout: false
     },
+
+    // ============================
+    // TÉCNICOS
+    // ============================
     {
         path: '/tecnico',
         Component: lazy(() => import('../pages/tecnicos/listado/ListTecnico')),
@@ -26,6 +38,10 @@ export const listaRutas = [
         Component: lazy(() => import('../pages/tecnicos/formulario/FormTecnico')),
         noLayout: true,
     },
+
+    // ============================
+    // VISITAS
+    // ============================
     {
         path: '/visita',
         Component: lazy(() => import('../pages/visitatec/listado/ListVisita')),
@@ -42,21 +58,28 @@ export const listaRutas = [
         noLayout: true,
     },
 
+    // ============================
+    // CALIDAD - RECLAMOS
+    // ============================
+
+   
     {
         path: '/calidad/reclamos/nuevo',
         Component: lazy(() => import('../pages/calidad/formulario/FormReclamo')),
-        noLayout: true,   // si tus formularios usan pantalla completa como /tecnico/nuevo
-    },
-        // (más adelante, cuando hagamos el listado y detalle)
-    {
-        path: '/calidad/reclamos',
-        Component: lazy(() => import('../pages/calidad/listado/ListReclamo')), // lo creamos luego
-        noLayout: false,
-    },
-    
-    {
-        path: '/calidad/reclamos/:id',
-        Component: lazy(() => import('../pages/calidad/formulario/FormReclamo')), // modo editar/ver
         noLayout: true,
     },
-]
+
+    //  2. LISTADO (con layout) — USA ListReclamo.jsx
+    {
+        path: '/calidad/reclamos',
+        Component: lazy(() => import('../pages/calidad/listado/ListReclamo')),
+        noLayout: false,
+    },
+
+    //  3. FORM EDITAR (sin layout)
+    {
+        path: '/calidad/reclamos/:id',
+        Component: lazy(() => import('../pages/calidad/formulario/FormReclamo')),
+        noLayout: true,
+    },
+];
